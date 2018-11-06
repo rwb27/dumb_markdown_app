@@ -9,10 +9,10 @@ let template = [{
     click: function (item, focusedWindow) {
       if (focusedWindow) {
         dialog.showOpenDialog({
-          properties: ['openFile', 'openDirectory']
+          properties: ['openFile']
         }, (files) => {
           if (files) {
-            focusedWindow.webContents.send('opened-path', files)
+            focusedWindow.webContents.send('opened-file', files)
           }
         })
       }
