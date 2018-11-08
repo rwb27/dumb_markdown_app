@@ -20,6 +20,7 @@
     "electron": "^3.0.4"
   },
   "dependencies": {
+    "marked": "^0.5.1",
     "remarkable": "^1.7.1"
   }
 }

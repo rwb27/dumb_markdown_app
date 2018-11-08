@@ -4,14 +4,15 @@
 
 const {app, ipcRenderer} = require('electron')
 const fs = require('fs')
+const path = require('path')
 
-const hd = new HardDocRenderer()
-
-ipcRenderer.on('opened-file', (event, path) => {
+ipcRenderer.on('opened-file', (event, filepath) => {
     // Open a file when the user picks one from the dialog
     let content = document.getElementById('content')
-    content.innerHTML = `opening ${path}`
-    fs.readFile(path.toString(), {}, (err, data) =>{ 
+    content.innerHTML = `opening ${filepath}`
+    fs.readFile(filepath.toString(), {}, (err, data) =>{ 
+        // construct a base URL for the file
+        let hd = new HardDocRenderer(baseUrl = path.dirname(filepath.toString()))
         content.innerHTML = "opened"
         if(err) throw err
         // put the contents of the file into the content div
