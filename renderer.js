@@ -4,8 +4,8 @@
 
 const {app, ipcRenderer} = require('electron')
 const fs = require('fs')
-const Remarkable = require('remarkable')
-const md = new Remarkable()
+
+const hd = new HardDocRenderer()
 
 ipcRenderer.on('opened-file', (event, path) => {
     // Open a file when the user picks one from the dialog
@@ -15,7 +15,7 @@ ipcRenderer.on('opened-file', (event, path) => {
         content.innerHTML = "opened"
         if(err) throw err
         // put the contents of the file into the content div
-        content.innerHTML = md.render(data.toString())
+        content.innerHTML = hd.renderString(data.toString())
     })
     content.innerHTML = "done"
 })
